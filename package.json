@@ -1,0 +1,12 @@
+{
+  "name": "react-tamagotchi",
+  "version": "1.0.0",
+  "description": "This is a small application that imitates the behavior of a tamagotchi. It is done using React and Typescript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Carlota Monedero",
+  "license": "ISC"
+}
