@@ -1,45 +1,10 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+/* merge common config with dev/prod config files */
+const { merge } = require('webpack-merge');
+const commonConfig = require('./webpack.common.js');
 
-module.exports = {
-  entry: path.resolve(__dirname, '..', './src/index.tsx'),
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'], /* leave off extension in imports */
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(ts|js)x?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-        ],
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource'
-      },
-      {
-        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-        type: 'asset/inline'
-      }
-    ],
-  },
-  output: {
-    path: path.resolve(__dirname, '..', './build'), 
-    filename: 'bundle.js',
-  },
-  mode: 'development',
-  plugins: [
-    /* insert the plugin into the index.html */
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './src/index.html'),
-    }),
-  ]
+module.exports = (envVars) => {
+    const { env } = envVars; // why do we destructure this? 
+    const envConfig = require(`./webpack.${env}.js`);
+    const config = merge(commonConfig, envConfig);
+    return config;
 }
