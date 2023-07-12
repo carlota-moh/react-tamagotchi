@@ -1,6 +1,6 @@
 // imports
-import ReactDOM from "react-dom";
 import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "./App";
 import ErrorPage from "./ErrorPage";
@@ -9,14 +9,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />
-  }
+    errorElement: <ErrorPage />,
+  },
 ]);
 
-// mount App component into index.html
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container!); // createRoot(container!) if you use TypeScript
+root.render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
-  document.getElementById("root")
+  </StrictMode>
 );
