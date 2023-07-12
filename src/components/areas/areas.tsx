@@ -1,4 +1,4 @@
-import { FeedButton, PlayButton, ScoldButton } from '../buttons/buttons'
+import { FeedButton, GetNewPokemonButton, PlayButton, ScoldButton } from '../buttons/buttons'
 import character from '../../assets/memecchi.png'
 
 const ButtonArea = () => {
@@ -12,6 +12,9 @@ const ButtonArea = () => {
             </span>
             <span>
                 <ScoldButton />
+            </span>
+            <span>
+                <GetNewPokemonButton />
             </span>
         </div>
     );

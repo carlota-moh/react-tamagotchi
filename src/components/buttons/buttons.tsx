@@ -10,4 +10,8 @@ const ScoldButton = () => {
     return <button>Scold</button>;
 }
 
-export {PlayButton, FeedButton, ScoldButton}
+const GetNewPokemonButton = () => {
+    return <button>New Pokemon</button>
+}
+
+export {PlayButton, FeedButton, ScoldButton, GetNewPokemonButton }
