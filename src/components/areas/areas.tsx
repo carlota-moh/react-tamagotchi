@@ -5,6 +5,9 @@ const ButtonArea = () => {
     return (
         <div className="button-area">
             <span>
+                <GetNewPokemonButton />
+            </span>
+            <span>
                 <FeedButton />
             </span>
             <span>
@@ -12,9 +15,6 @@ const ButtonArea = () => {
             </span>
             <span>
                 <ScoldButton />
-            </span>
-            <span>
-                <GetNewPokemonButton />
             </span>
         </div>
     );
