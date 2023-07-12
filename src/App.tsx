@@ -1,11 +1,46 @@
 import './styles.css'
-import IMAGE from './tamagotchi.png'
-import LOGO from './tamagotchi2.svg'
+import character from './assets/memecchi.png'
+
+const PlayButton = () => {
+    return <button>Play</button>;
+}
+
+const FeedButton = () => {
+    return <button>Feed</button>;
+}
+
+const ScoldButton = () => {
+    return <button>Scold</button>;
+}
+
+const ButtonArea = () => {
+    return (
+        <div className="button-area">
+            <span>
+                <FeedButton />
+            </span>
+            <span>
+                <PlayButton />
+            </span>
+            <span>
+                <ScoldButton />
+            </span>
+        </div>
+    );
+}
+
+const ScreenArea = () => {
+    return <div className="screen">
+        <img src={character} alt="Character" />
+    </div>;
+}
 
 export const App = () => {
-    return <>
-        <h1>React Tamagotchi - {process.env.NODE_ENV} {process.env.name}</h1>
-        <img src={ IMAGE } alt="Tamagotchi image" width="200" height="200"/>
-        <img src={ LOGO } alt="Tamagotchi image" width="200" height="200"/>
-    </>
+    return (
+        // change classnames!
+        <div className="tamagotchi">
+            <ScreenArea />
+            <ButtonArea />
+        </div>
+    );
 }
