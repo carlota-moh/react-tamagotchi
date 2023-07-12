@@ -1,5 +1,11 @@
 import Button from "@mui/material/Button";
 
+import React, { FC } from "react";
+
+interface GetNewPokemonProps {
+  onGetClick(): any
+}
+
 const FeedButton = () => {
   return (
     <Button variant="contained" color="primary" size="small">
@@ -17,16 +23,21 @@ const PlayButton = () => {
 };
 
 const ScoldButton = () => {
-    return (
-        <Button variant="contained" color="error" size="small">
-          Scold
-        </Button>
-      );
+  return (
+    <Button variant="contained" color="error" size="small">
+      Scold
+    </Button>
+  );
 };
 
-const GetNewPokemonButton = () => {
+const GetNewPokemonButton: FC<GetNewPokemonProps> = ({ onGetClick }) => {
   return (
-    <Button variant="contained" color="success" size="small">
+    <Button
+      variant="contained"
+      color="success"
+      size="small"
+      onClick={onGetClick}
+    >
       New
     </Button>
   );

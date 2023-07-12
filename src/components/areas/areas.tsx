@@ -2,10 +2,14 @@ import { FeedButton, GetNewPokemonButton, PlayButton, ScoldButton } from '../but
 import character from '../../assets/memecchi.png'
 
 const ButtonArea = () => {
+    const handleGetClick = (): any => {
+        console.log('hola que tal')
+    }
+
     return (
         <div className="button-area">
             <span>
-                <GetNewPokemonButton />
+                <GetNewPokemonButton onGetClick={handleGetClick} />
             </span>
             <span>
                 <FeedButton />

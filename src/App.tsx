@@ -1,7 +1,7 @@
 import './styles.css'
 import { ScreenArea, ButtonArea } from './components/areas/areas';
 
-export const App = () => {
+const App = () => {
     return (
         // change classnames!
         <div className="tamagotchi">
@@ -10,3 +10,5 @@ export const App = () => {
         </div>
     );
 }
+
+export default App
