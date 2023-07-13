@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import React, { FC } from "react";
+import { FC } from "react";
 import { ButtonProps } from "./types";
 
 const FeedButton = () => {
@@ -23,9 +23,9 @@ const PlayButton: FC<ButtonProps> = ({ onGetClick }) => {
   );
 };
 
-const ScoldButton = () => {
+const ScoldButton: FC<ButtonProps> = ({ onGetClick }) => {
   return (
-    <Button variant="contained" color="error" size="small">
+    <Button variant="contained" color="error" size="small" onClick={onGetClick}>
       Scold
     </Button>
   );

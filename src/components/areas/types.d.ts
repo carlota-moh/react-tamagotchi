@@ -2,7 +2,7 @@ interface PokeData {
   name: string;
   types: Array<object>;
   weight: number;
-  img: string | undefined;
+  img?: string | null;
 }
 
 interface ButtonAreaProps {
@@ -16,4 +16,15 @@ interface ScreenAreaProps {
   pokemonHappiness: number;
 }
 
-export { PokeData, ButtonAreaProps, ScreenAreaProps };
+interface PokemonImageProps {
+  pokemonData: PokeData | undefined;
+}
+
+interface CustomAlertProps {
+  // open: boolean;
+  // setOpen: Dispatch<SetStateAction<boolean>>;
+  pokemonHappiness: number;
+  pokemonData: PokeData | undefined;
+}
+
+export { PokeData, ButtonAreaProps, ScreenAreaProps, PokemonImageProps, CustomAlertProps };

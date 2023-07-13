@@ -5,7 +5,12 @@ import {
   ScoldButton,
 } from "../buttons/buttons";
 import { fetchPokemon } from "./functions";
-import { ScreenAreaProps, ButtonAreaProps } from "./types";
+import {
+  ScreenAreaProps,
+  ButtonAreaProps,
+  PokemonImageProps,
+  CustomAlertProps,
+} from "./types";
 import {
   Battery20,
   Battery50,
@@ -13,6 +18,7 @@ import {
   BatteryFull,
 } from "@mui/icons-material";
 import { Alert } from "@mui/material";
+import { useState } from "react";
 
 const ButtonArea = ({
   setPokemon,
@@ -36,6 +42,13 @@ const ButtonArea = ({
     }
   };
 
+  const handleScoldClick = () => {
+    if (pokemonHappiness > 0) {
+      const newHappiness = pokemonHappiness - 20;
+      setHappiness(newHappiness);
+    }
+  };
+
   return (
     <div className="button-area">
       <span>
@@ -45,10 +58,10 @@ const ButtonArea = ({
         <FeedButton />
       </span>
       <span>
-        <PlayButton onGetClick={handlePlayClick}/>
+        <PlayButton onGetClick={handlePlayClick} />
       </span>
       <span>
-        <ScoldButton />
+        <ScoldButton onGetClick={handleScoldClick} />
       </span>
     </div>
   );
@@ -66,9 +79,16 @@ const CustomBatteryIcon = ({ pokemonHappiness }: ScreenAreaProps) => {
   }
 };
 
-const CustomAlert = ({ pokemonHappiness, pokemonData }: ScreenAreaProps) => {
-  if (pokemonHappiness === 100 && pokemonData) {
-    return <Alert severity="success">{pokemonData.name} is super happy!</Alert>
+const CustomAlert = ({ pokemonHappiness, pokemonData }: CustomAlertProps) => {
+  if (pokemonData) {
+    switch (pokemonHappiness) {
+      case 100:
+        return (
+          <Alert severity="success">{pokemonData.name} is super happy!</Alert>
+        );
+      case 0:
+        return <Alert severity="error">{pokemonData.name} is super sad!</Alert>;
+    }
   }
 };
 
@@ -82,10 +102,21 @@ const HappyArea = ({ pokemonData, pokemonHappiness }: ScreenAreaProps) => {
         <p className="battery-text">{pokemonHappiness}</p>
       </span>
       <span>
-        <CustomAlert pokemonHappiness={pokemonHappiness} pokemonData={pokemonData}/>
+        <CustomAlert
+          pokemonHappiness={pokemonHappiness}
+          pokemonData={pokemonData}
+        />
       </span>
     </div>
   );
+};
+
+const PokemonImage = ({ pokemonData }: PokemonImageProps) => {
+  if (!pokemonData || !pokemonData.img) {
+    return <div></div>;
+  }
+
+  return <img src={pokemonData.img} alt="Character" className="pokemon-img" />;
 };
 
 const ScreenArea = ({ pokemonData, pokemonHappiness }: ScreenAreaProps) => {
@@ -100,10 +131,13 @@ const ScreenArea = ({ pokemonData, pokemonHappiness }: ScreenAreaProps) => {
   return (
     <div className="screen">
       <div className="stat-menu">
-        <HappyArea pokemonHappiness={pokemonHappiness} pokemonData={pokemonData} />
+        <HappyArea
+          pokemonHappiness={pokemonHappiness}
+          pokemonData={pokemonData}
+        />
         <div className="weight-div">Weight: {pokemonData.weight}</div>
       </div>
-      <img src={pokemonData.img} alt="Character" className="pokemon-img" />
+      <PokemonImage pokemonData={pokemonData} />
     </div>
   );
 };
