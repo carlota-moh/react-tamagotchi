@@ -4,9 +4,9 @@ import {
   PlayButton,
   ScoldButton,
 } from "../buttons/buttons";
-import character from "../../assets/memecchi.png";
 import { fetchPokemon } from "./functions";
 import { ScreenAreaProps, ButtonAreaProps } from "./types";
+import { Battery20, Battery50, BatteryFull } from "@mui/icons-material";
 
 const ButtonArea = ({ setPokemon }: ButtonAreaProps) => {
   // WIP - modify to allow user input
@@ -17,7 +17,6 @@ const ButtonArea = ({ setPokemon }: ButtonAreaProps) => {
     fetchPokemon(pokemonName)
       .then((res) => setPokemon(res))
       .catch((error) => console.log(error));
-    ;
   };
 
   return (
@@ -47,10 +46,20 @@ const ScreenArea = ({ pokemonData }: ScreenAreaProps) => {
     );
   }
 
-  const pokeIcon = pokemonData.img;
   return (
     <div className="screen">
-      <img src={pokeIcon} alt="Character" />
+      <div className="stat-menu">
+        <div className="battery-icon">
+          <span>
+            <Battery20 color="error" fontSize="large"></Battery20>
+          </span>
+          <span>
+            <p className="battery-text">20</p>
+          </span>
+        </div>
+        <div className="weight-div">Weight: {pokemonData.weight}</div>
+      </div>
+      <img src={pokemonData.img} alt="Character" className="pokemon-img" />
     </div>
   );
 };
