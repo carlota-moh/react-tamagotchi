@@ -1,9 +1,9 @@
 import Pokedex from "pokedex-promise-v2";
 import { PokeData } from "./types";
 
-const fetchPokemon = (pokemonName: string): Promise<void | PokeData> => {
+const fetchPokemon = (pokemonID: number): Promise<void | PokeData> => {
   const P = new Pokedex();
-  return P.getPokemonByName(pokemonName)
+  return P.getPokemonByName(pokemonID)
     .then((res) => parsePokemon(res))
     .catch((error) => console.log("There has been an error: ", error));
 };

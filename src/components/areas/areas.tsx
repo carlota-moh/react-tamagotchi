@@ -28,8 +28,8 @@ const ButtonArea = ({
   // WIP - modify to allow user input
   const handleNewPokemonClick = () => {
     setHappiness(0);
-    const pokemonName = "bulbasaur";
-    fetchPokemon(pokemonName)
+    const pokemonID = Math.floor((Math.random() * 150) + 1)
+    fetchPokemon(pokemonID)
       .then((res) => setPokemon(res))
       .catch((error) => console.log(error));
   };
