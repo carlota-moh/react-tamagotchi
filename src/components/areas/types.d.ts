@@ -11,6 +11,11 @@ interface ButtonAreaProps {
 
 interface ScreenAreaProps {
   pokemonData: PokeData | undefined;
+  pokemonHappiness: number;
 }
 
-export { PokeData, ButtonAreaProps, ScreenAreaProps };
+interface HappyAreaProps {
+  pokemonHappiness: number;
+}
+
+export { PokeData, ButtonAreaProps, ScreenAreaProps, HappyAreaProps };

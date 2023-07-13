@@ -5,8 +5,13 @@ import {
   ScoldButton,
 } from "../buttons/buttons";
 import { fetchPokemon } from "./functions";
-import { ScreenAreaProps, ButtonAreaProps } from "./types";
-import { Battery20, Battery50, BatteryFull } from "@mui/icons-material";
+import { ScreenAreaProps, ButtonAreaProps, HappyAreaProps } from "./types";
+import {
+  Battery20,
+  Battery50,
+  Battery80,
+  BatteryFull,
+} from "@mui/icons-material";
 
 const ButtonArea = ({ setPokemon }: ButtonAreaProps) => {
   // WIP - modify to allow user input
@@ -37,7 +42,32 @@ const ButtonArea = ({ setPokemon }: ButtonAreaProps) => {
   );
 };
 
-const ScreenArea = ({ pokemonData }: ScreenAreaProps) => {
+const CustomBatteryIcon = ({ pokemonHappiness }: HappyAreaProps) => {
+  if (pokemonHappiness <= 20) {
+    return <Battery20 color="error" fontSize="large"></Battery20>;
+  } else if (20 < pokemonHappiness && pokemonHappiness <= 50) {
+    return <Battery50 color="warning" fontSize="large"></Battery50>;
+  } else if (50 < pokemonHappiness && pokemonHappiness <= 80) {
+    return <Battery80 color="success" fontSize="large"></Battery80>;
+  } else {
+    return <BatteryFull color="success" fontSize="large"></BatteryFull>;
+  }
+};
+
+const HappyArea = ({ pokemonHappiness }: HappyAreaProps) => {
+  return (
+    <div className="battery-icon">
+      <span>
+        <CustomBatteryIcon pokemonHappiness={pokemonHappiness} />
+      </span>
+      <span>
+        <p className="battery-text">{pokemonHappiness}</p>
+      </span>
+    </div>
+  );
+};
+
+const ScreenArea = ({ pokemonData, pokemonHappiness }: ScreenAreaProps) => {
   if (!pokemonData) {
     return (
       <div className="screen">
@@ -49,14 +79,7 @@ const ScreenArea = ({ pokemonData }: ScreenAreaProps) => {
   return (
     <div className="screen">
       <div className="stat-menu">
-        <div className="battery-icon">
-          <span>
-            <Battery20 color="error" fontSize="large"></Battery20>
-          </span>
-          <span>
-            <p className="battery-text">20</p>
-          </span>
-        </div>
+        <HappyArea pokemonHappiness={pokemonHappiness} />
         <div className="weight-div">Weight: {pokemonData.weight}</div>
       </div>
       <img src={pokemonData.img} alt="Character" className="pokemon-img" />
