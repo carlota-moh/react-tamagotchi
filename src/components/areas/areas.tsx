@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FeedButton,
   GetNewPokemonButton,
@@ -17,7 +18,7 @@ import {
   Battery80,
   BatteryFull,
 } from "@mui/icons-material";
-import { Alert } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
 
 const ButtonArea = ({
   pokemonData,
@@ -28,7 +29,7 @@ const ButtonArea = ({
   // WIP - modify to allow user input
   const handleNewPokemonClick = () => {
     setHappiness(0);
-    const pokemonID = Math.floor((Math.random() * 150) + 1)
+    const pokemonID = Math.floor(Math.random() * 150 + 1);
     fetchPokemon(pokemonID)
       .then((res) => setPokemon(res))
       .catch((error) => console.log(error));
@@ -87,14 +88,27 @@ const CustomBatteryIcon = ({ pokemonHappiness }: ScreenAreaProps) => {
 };
 
 const CustomAlert = ({ pokemonHappiness, pokemonData }: CustomAlertProps) => {
+  const [open, setOpen] = useState(true);
   if (pokemonData) {
     switch (pokemonHappiness) {
       case 100:
         return (
-          <Alert severity="success">{pokemonData.name} is super happy!</Alert>
+          <Snackbar
+            open={open}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert severity="success">{pokemonData.name} is super happy!</Alert>
+          </Snackbar>
         );
       case 0:
-        return <Alert severity="error">{pokemonData.name} is super sad!</Alert>;
+        return (
+          <Snackbar
+            open={open}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert severity="error">{pokemonData.name} is super sad!</Alert>
+          </Snackbar>
+        );
     }
   }
 };
