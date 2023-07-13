@@ -1,10 +1,6 @@
 import Button from "@mui/material/Button";
-
 import React, { FC } from "react";
-
-interface GetNewPokemonProps {
-  onGetClick(): any
-}
+import { GetNewPokemonProps } from "./types";
 
 const FeedButton = () => {
   return (
