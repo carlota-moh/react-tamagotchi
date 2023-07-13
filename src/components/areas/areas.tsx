@@ -10,7 +10,6 @@ import {
   ButtonAreaProps,
   PokemonImageProps,
   CustomAlertProps,
-  PokeData,
 } from "./types";
 import {
   Battery20,
@@ -19,7 +18,6 @@ import {
   BatteryFull,
 } from "@mui/icons-material";
 import { Alert } from "@mui/material";
-import { useState } from "react";
 
 const ButtonArea = ({
   pokemonData,
@@ -28,10 +26,9 @@ const ButtonArea = ({
   setHappiness,
 }: ButtonAreaProps) => {
   // WIP - modify to allow user input
-
-  const handleNewPokemonClick = (): void => {
+  const handleNewPokemonClick = () => {
+    setHappiness(0);
     const pokemonName = "bulbasaur";
-
     fetchPokemon(pokemonName)
       .then((res) => setPokemon(res))
       .catch((error) => console.log(error));
