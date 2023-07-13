@@ -7,15 +7,13 @@ interface PokeData {
 
 interface ButtonAreaProps {
   setPokemon: Dispatch<SetStateAction<PokeData | undefined>>;
+  pokemonHappiness: number;
+  setHappiness: Dispatch<SetStateAction<number>>;
 }
 
 interface ScreenAreaProps {
-  pokemonData: PokeData | undefined;
+  pokemonData?: PokeData | undefined;
   pokemonHappiness: number;
 }
 
-interface HappyAreaProps {
-  pokemonHappiness: number;
-}
-
-export { PokeData, ButtonAreaProps, ScreenAreaProps, HappyAreaProps };
+export { PokeData, ButtonAreaProps, ScreenAreaProps };

@@ -1,5 +1,5 @@
-interface GetNewPokemonProps {
+interface ButtonProps {
   onGetClick(): any;
 }
 
-export { GetNewPokemonProps };
+export { ButtonProps };
