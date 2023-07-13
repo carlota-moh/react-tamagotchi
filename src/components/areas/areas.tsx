@@ -10,6 +10,7 @@ import {
   ButtonAreaProps,
   PokemonImageProps,
   CustomAlertProps,
+  PokeData,
 } from "./types";
 import {
   Battery20,
@@ -21,6 +22,7 @@ import { Alert } from "@mui/material";
 import { useState } from "react";
 
 const ButtonArea = ({
+  pokemonData,
   setPokemon,
   pokemonHappiness,
   setHappiness,
@@ -49,13 +51,21 @@ const ButtonArea = ({
     }
   };
 
+  const handleFeedClick = () => {
+    if (pokemonData) {
+      const newData = { ...pokemonData };
+      newData.weight = pokemonData.weight + 5;
+      setPokemon(newData);
+    }
+  };
+
   return (
     <div className="button-area">
       <span>
         <GetNewPokemonButton onGetClick={handleNewPokemonClick} />
       </span>
       <span>
-        <FeedButton />
+        <FeedButton onGetClick={handleFeedClick} />
       </span>
       <span>
         <PlayButton onGetClick={handlePlayClick} />

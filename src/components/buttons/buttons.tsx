@@ -2,9 +2,14 @@ import Button from "@mui/material/Button";
 import { FC } from "react";
 import { ButtonProps } from "./types";
 
-const FeedButton = () => {
+const FeedButton: FC<ButtonProps> = ({ onGetClick }) => {
   return (
-    <Button variant="contained" color="primary" size="small">
+    <Button
+      variant="contained"
+      color="primary"
+      size="small"
+      onClick={onGetClick}
+    >
       Feed
     </Button>
   );

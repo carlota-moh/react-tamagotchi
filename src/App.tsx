@@ -10,7 +10,7 @@ const App = () => {
     return (
         <div className="tamagotchi">
             <ScreenArea pokemonData={pokemonData} pokemonHappiness={pokemonHappiness}/>
-            <ButtonArea setPokemon={setPokemon} pokemonHappiness={pokemonHappiness} setHappiness={setHappiness}/>
+            <ButtonArea pokemonData={pokemonData} setPokemon={setPokemon} pokemonHappiness={pokemonHappiness} setHappiness={setHappiness}/>
         </div>
     );
 }

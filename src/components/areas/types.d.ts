@@ -6,6 +6,7 @@ interface PokeData {
 }
 
 interface ButtonAreaProps {
+  pokemonData: PokeData | undefined;
   setPokemon: Dispatch<SetStateAction<PokeData | undefined>>;
   pokemonHappiness: number;
   setHappiness: Dispatch<SetStateAction<number>>;
