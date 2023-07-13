@@ -42,7 +42,7 @@ const ScreenArea = ({ pokemonData }: ScreenAreaProps) => {
   if (!pokemonData) {
     return (
       <div className="screen">
-        <img src={character} alt="Character" />
+        <p className="welcome-message">Press New button to start playing!</p>
       </div>
     );
   }
