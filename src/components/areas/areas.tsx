@@ -6,20 +6,18 @@ import {
 } from "../buttons/buttons";
 import character from "../../assets/memecchi.png";
 import { fetchPokemon } from "./functions";
-import { PokeData, ScreenAreaProps, ButtonAreaProps } from "./types";
+import { ScreenAreaProps, ButtonAreaProps } from "./types";
 
-const ButtonArea = ({setPokemon}: ButtonAreaProps) => {
+const ButtonArea = ({ setPokemon }: ButtonAreaProps) => {
   // WIP - modify to allow user input
 
   const handleNewPokemonClick = (): void => {
     const pokemonName = "bulbasaur";
 
-    const newPokemon = fetchPokemon(pokemonName)
-    .then((res) => console.log(res))
-    .catch(error => console.log(error));
-
-    setPokemon(newPokemon);
-    
+    fetchPokemon(pokemonName)
+      .then((res) => setPokemon(res))
+      .catch((error) => console.log(error));
+    ;
   };
 
   return (
@@ -40,10 +38,19 @@ const ButtonArea = ({setPokemon}: ButtonAreaProps) => {
   );
 };
 
-const ScreenArea = (pokemonData: ScreenAreaProps) => {
+const ScreenArea = ({ pokemonData }: ScreenAreaProps) => {
+  if (!pokemonData) {
+    return (
+      <div className="screen">
+        <img src={character} alt="Character" />
+      </div>
+    );
+  }
+
+  const pokeIcon = pokemonData.img;
   return (
     <div className="screen">
-      <img src={character} alt="Character" />
+      <img src={pokeIcon} alt="Character" />
     </div>
   );
 };
