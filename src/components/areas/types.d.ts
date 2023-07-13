@@ -5,4 +5,12 @@ interface PokeData {
   img: string | null;
 }
 
-export {PokeData}
+interface ButtonAreaProps {
+  setPokemon?: any;
+}
+
+interface ScreenAreaProps {
+  pokemonData: PokeData | undefined;
+}
+
+export { PokeData, ButtonAreaProps, ScreenAreaProps };
