@@ -19,4 +19,4 @@ const parsePokemon = (res: Pokedex.Pokemon): PokeData => {
   return PokeData;
 };
 
-export { fetchPokemon };
+export { fetchPokemon, parsePokemon };
