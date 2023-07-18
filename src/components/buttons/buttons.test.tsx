@@ -1,10 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import {
-  PlayButton,
-  FeedButton,
-  ScoldButton,
-  GetNewPokemonButton,
-} from "./buttons";
 import App from "../../App";
 
 describe("Buttons render correctly", () => {

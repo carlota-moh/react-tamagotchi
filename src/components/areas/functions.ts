@@ -1,4 +1,4 @@
-import Pokedex from "pokedex-promise-v2";
+import Pokedex, { Pokemon } from "pokedex-promise-v2";
 import { PokeData } from "./types";
 
 const fetchPokemon = (pokemonID: number): Promise<void | PokeData> => {

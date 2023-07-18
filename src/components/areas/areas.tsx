@@ -1,17 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { pokemonDataContext, pokemonHappinessContext } from "../../App";
 import {
   FeedButton,
   GetNewPokemonButton,
   PlayButton,
   ScoldButton,
 } from "../buttons/buttons";
-import { fetchPokemon } from "./functions";
-import {
-  ScreenAreaProps,
-  ButtonAreaProps,
-  PokemonImageProps,
-  CustomAlertProps,
-} from "./types";
 import {
   Battery20,
   Battery50,
@@ -19,42 +13,19 @@ import {
   BatteryFull,
 } from "@mui/icons-material";
 import { Alert, Snackbar } from "@mui/material";
+import { fetchPokemon } from "./functions";
 
-const ButtonArea = ({
-  pokemonData,
-  setPokemon,
-  pokemonHappiness,
-  setHappiness,
-}: ButtonAreaProps) => {
-  // WIP - modify to allow user input
-  const handleNewPokemonClick = () => {
-    setHappiness(0);
+const ButtonArea = () => {
+  const { pokemonData, dispatchData } = useContext(pokemonDataContext);
+  const { pokemonHappiness, dispatchHappy } = useContext(
+    pokemonHappinessContext
+  );
+
+  const handleNewPokemonClick = async () => {
+    dispatchHappy({type: "new"})
     const pokemonID = Math.floor(Math.random() * 150 + 1);
-    fetchPokemon(pokemonID)
-      .then((res) => setPokemon(res))
-      .catch((error) => console.log(error));
-  };
-
-  const handlePlayClick = () => {
-    if (pokemonHappiness < 100) {
-      const newHappiness = pokemonHappiness + 20;
-      setHappiness(newHappiness);
-    }
-  };
-
-  const handleScoldClick = () => {
-    if (pokemonHappiness > 0) {
-      const newHappiness = pokemonHappiness - 20;
-      setHappiness(newHappiness);
-    }
-  };
-
-  const handleFeedClick = () => {
-    if (pokemonData) {
-      const newData = { ...pokemonData };
-      newData.weight = pokemonData.weight + 5;
-      setPokemon(newData);
-    }
+    const pokemonData = await fetchPokemon(pokemonID);
+    dispatchData({type: "new", pokemonData: pokemonData})
   };
 
   return (
@@ -63,19 +34,23 @@ const ButtonArea = ({
         <GetNewPokemonButton onGetClick={handleNewPokemonClick} />
       </span>
       <span>
-        <FeedButton onGetClick={handleFeedClick} />
+        <FeedButton onGetClick={() => dispatchData({ type: "feed" })} />
       </span>
       <span>
-        <PlayButton onGetClick={handlePlayClick} />
+        <PlayButton onGetClick={() => dispatchHappy({ type: "play" })} />
       </span>
       <span>
-        <ScoldButton onGetClick={handleScoldClick} />
+        <ScoldButton onGetClick={() => dispatchHappy({ type: "scold" })} />
       </span>
     </div>
   );
 };
 
-const CustomBatteryIcon = ({ pokemonHappiness }: ScreenAreaProps) => {
+const CustomBatteryIcon = () => {
+  const { pokemonHappiness, dispatchHappy } = useContext(
+    pokemonHappinessContext
+  );
+
   if (pokemonHappiness <= 20) {
     return <Battery20 color="error" fontSize="large"></Battery20>;
   } else if (20 < pokemonHappiness && pokemonHappiness <= 50) {
@@ -87,8 +62,13 @@ const CustomBatteryIcon = ({ pokemonHappiness }: ScreenAreaProps) => {
   }
 };
 
-const CustomAlert = ({ pokemonHappiness, pokemonData }: CustomAlertProps) => {
+const CustomAlert = () => {
   const [open, setOpen] = useState(true);
+  const { pokemonData, dispatchData } = useContext(pokemonDataContext);
+  const { pokemonHappiness, dispatchHappy } = useContext(
+    pokemonHappinessContext
+  );
+
   if (pokemonData) {
     switch (pokemonHappiness) {
       case 100:
@@ -113,26 +93,28 @@ const CustomAlert = ({ pokemonHappiness, pokemonData }: CustomAlertProps) => {
   }
 };
 
-const HappyArea = ({ pokemonData, pokemonHappiness }: ScreenAreaProps) => {
+const HappyArea = () => {
+  const { pokemonHappiness, dispatchHappy } = useContext(
+    pokemonHappinessContext
+  );
   return (
     <div className="battery-icon">
       <span>
-        <CustomBatteryIcon pokemonHappiness={pokemonHappiness} />
+        <CustomBatteryIcon />
       </span>
       <span>
         <p className="battery-text">{pokemonHappiness}</p>
       </span>
       <span>
-        <CustomAlert
-          pokemonHappiness={pokemonHappiness}
-          pokemonData={pokemonData}
-        />
+        <CustomAlert />
       </span>
     </div>
   );
 };
 
-const PokemonImage = ({ pokemonData }: PokemonImageProps) => {
+const PokemonImage = () => {
+  const { pokemonData, dispatchData } = useContext(pokemonDataContext);
+
   if (!pokemonData || !pokemonData.img) {
     return <div></div>;
   }
@@ -140,7 +122,9 @@ const PokemonImage = ({ pokemonData }: PokemonImageProps) => {
   return <img src={pokemonData.img} alt="Character" className="pokemon-img" />;
 };
 
-const ScreenArea = ({ pokemonData, pokemonHappiness }: ScreenAreaProps) => {
+const ScreenArea = () => {
+  const { pokemonData, dispatchData } = useContext(pokemonDataContext);
+
   if (!pokemonData) {
     return (
       <div className="screen">
@@ -152,13 +136,10 @@ const ScreenArea = ({ pokemonData, pokemonHappiness }: ScreenAreaProps) => {
   return (
     <div className="screen">
       <div className="stat-menu">
-        <HappyArea
-          pokemonHappiness={pokemonHappiness}
-          pokemonData={pokemonData}
-        />
+        <HappyArea />
         <div className="weight-div">Weight: {pokemonData.weight}</div>
       </div>
-      <PokemonImage pokemonData={pokemonData} />
+      <PokemonImage />
     </div>
   );
 };
