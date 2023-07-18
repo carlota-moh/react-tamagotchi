@@ -1,9 +1,18 @@
-import type {Config} from '@jest/types';
+import type { Config } from "@jest/types";
 // Sync object
+const modulesToTransform = [
+  "pokedex-promise-v2",
+  "p-map",
+  "aggregate-error",
+  "indent-string",
+  "clean-stack",
+  "escape-string-regexp",
+].join("|");
 const config: Config.InitialOptions = {
   verbose: true,
   transform: {
-  '^.+\\.tsx?$': 'ts-jest',
+    "^.+\\.(j|t)sx?$": "ts-jest",
   },
+  transformIgnorePatterns: [`node_modules/(?!${modulesToTransform}/.*)`],
 };
 export default config;
