@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Roboto';
 }
 
 img {
@@ -26,10 +27,12 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin: 15px;
+    margin-top: 15px;
 }
 
 .screen {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 50%;
     border-width:2px;
@@ -38,3 +41,39 @@ img {
     font-size: 50px;
     text-align: center;
 }
+
+.welcome-message {
+    font-weight: bold;
+}
+
+.pokemon-img {
+    /* position: fixed; */
+    max-width: 200px;
+    max-height: 200px;
+    width: 200px;
+    height: 200px;
+}
+
+.stat-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px 0 10px;
+}
+
+.battery-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+} 
+
+.battery-text {
+    font-size: 10px;
+}
+
+.weight-div {
+    font-size: 18px;
+}
+
+

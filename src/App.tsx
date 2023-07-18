@@ -1,46 +1,18 @@
 import './styles.css'
-import character from './assets/memecchi.png'
+import { ScreenArea, ButtonArea } from './components/areas/areas';
+import { useState } from 'react';
+import { PokeData } from './components/areas/types';
 
-const PlayButton = () => {
-    return <button>Play</button>;
-}
+const App = () => {
+    const [pokemonData, setPokemon] = useState<PokeData>();
+    const [pokemonHappiness, setHappiness] = useState(0);
 
-const FeedButton = () => {
-    return <button>Feed</button>;
-}
-
-const ScoldButton = () => {
-    return <button>Scold</button>;
-}
-
-const ButtonArea = () => {
     return (
-        <div className="button-area">
-            <span>
-                <FeedButton />
-            </span>
-            <span>
-                <PlayButton />
-            </span>
-            <span>
-                <ScoldButton />
-            </span>
-        </div>
-    );
-}
-
-const ScreenArea = () => {
-    return <div className="screen">
-        <img src={character} alt="Character" />
-    </div>;
-}
-
-export const App = () => {
-    return (
-        // change classnames!
         <div className="tamagotchi">
-            <ScreenArea />
-            <ButtonArea />
+            <ScreenArea pokemonData={pokemonData} pokemonHappiness={pokemonHappiness}/>
+            <ButtonArea pokemonData={pokemonData} setPokemon={setPokemon} pokemonHappiness={pokemonHappiness} setHappiness={setHappiness}/>
         </div>
     );
 }
+
+export default App
