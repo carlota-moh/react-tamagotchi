@@ -13,6 +13,7 @@ const config: Config.InitialOptions = {
   transform: {
     "^.+\\.(j|t)sx?$": "ts-jest",
   },
+  testEnvironment: 'jest-environment-jsdom',
   transformIgnorePatterns: [`node_modules/(?!${modulesToTransform}/.*)`],
 };
 export default config;
