@@ -1,4 +1,4 @@
-// import "./styles.css";
+import "./styles.css";
 import { ScreenArea, ButtonArea } from "./components/areas/areas";
 import { useState } from "react";
 import { PokeData } from "./components/areas/types";
