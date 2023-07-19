@@ -128,7 +128,7 @@ const ScreenArea = () => {
   if (!pokemonData) {
     return (
       <div className="screen">
-        <p className="welcome-message">Press New button to start playing!</p>
+        <h1 className="welcome-message">Press New button to start playing!</h1>
       </div>
     );
   }
