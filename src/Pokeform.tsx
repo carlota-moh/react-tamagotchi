@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { fetchPokemon } from "./components/areas/functions";
 
 interface PokeFormInput {
   pokemonName: string;
@@ -7,8 +8,13 @@ interface PokeFormInput {
 const PokeFormPage = () => {
   const { register, handleSubmit } = useForm<PokeFormInput>();
 
-  const onSubmit: SubmitHandler<PokeFormInput> = (data) => {
-    alert(JSON.stringify(data));
+  const onSubmit: SubmitHandler<PokeFormInput> = async (data) => {
+    // dispatchHappy({ type: "new" });
+    const pokemonData = await fetchPokemon(data.pokemonName).catch(
+      (e) => alert("Invalid pokemon")
+    );
+    // dispatchData({ type: "new", pokemonData: pokemonData });
+    console.log(pokemonData);
   };
 
   return (
