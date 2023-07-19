@@ -10,16 +10,25 @@ const RootPage = () => {
           <h1 className="welcome-message">Welcome to the Pokémon App!</h1>
         </div>
         <div className="button-area">
-          <div>
-            <Button variant="contained" color="primary" size="large">
+          <span>
+            <Button variant="contained" color="primary" size="small">
               <Link className="root-link" to={`app`}>
                 Go to App
               </Link>
             </Button>
-          </div>
-          <br />
-          <div>
-            <Button variant="contained" color="secondary" size="large">
+          </span>
+          <span>
+            <Button variant="contained" color="success" size="small">
+              <Link
+                className="root-link"
+                to={`pokeform`}
+              >
+                Choose Pokémon
+              </Link>
+            </Button>
+          </span>
+          <span>
+            <Button variant="contained" color="secondary" size="small">
               <Link
                 className="root-link"
                 to={`https://github.com/carlota-moh/react-tamagotchi`}
@@ -27,7 +36,7 @@ const RootPage = () => {
                 Visit GitHub
               </Link>
             </Button>
-          </div>
+          </span>
         </div>
       </div>
     </>
