@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useCallback } from "react";
 import { pokemonDataContext, pokemonHappinessContext } from "../../App";
 import {
   FeedButton,
@@ -21,12 +21,12 @@ const ButtonArea = () => {
     pokemonHappinessContext
   );
 
-  const handleNewPokemonClick = async () => {
+  const handleNewPokemonClick = useCallback(async () => {
     dispatchHappy({type: "new"})
     const pokemonID = Math.floor(Math.random() * 150 + 1);
     const pokemonData = await fetchPokemon(pokemonID);
     dispatchData({type: "new", pokemonData: pokemonData})
-  };
+  }, []);
 
   return (
     <div className="button-area">
