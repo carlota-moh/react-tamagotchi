@@ -35,6 +35,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '..', './build'), 
     filename: 'bundle.js',
+    publicPath: '/'
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     /* insert the plugin into the index.html */
