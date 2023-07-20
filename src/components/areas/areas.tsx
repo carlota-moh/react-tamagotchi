@@ -127,7 +127,7 @@ const ScreenArea = () => {
 
   if (!pokemonData) {
     return (
-      <div className="screen">
+      <div className="screen" data-testid='initial-screen'>
         <h1 className="welcome-message">Press New button to start playing!</h1>
       </div>
     );
@@ -135,9 +135,9 @@ const ScreenArea = () => {
 
   return (
     <div className="screen">
-      <div className="stat-menu">
+      <div className="stat-menu" data-testid='stats'>
         <HappyArea />
-        <div className="weight-div">Weight: {pokemonData.weight}</div>
+        <div className="weight-div" data-testid='pokemon-img'>Weight: {pokemonData.weight}</div>
       </div>
       <PokemonImage />
     </div>
