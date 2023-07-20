@@ -5,7 +5,6 @@ const fetchPokemon = (pokemonID: number | string): Promise<void | PokeData> => {
   const P = new Pokedex();
   return P.getPokemonByName(pokemonID)
     .then((res) => parsePokemon(res))
-    .catch((error) => alert(`Invalid Pokémon name`));
 };
 
 const parsePokemon = (res: Pokedex.Pokemon): PokeData => {

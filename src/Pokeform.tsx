@@ -1,8 +1,9 @@
-import { SubmitHandler, useForm } from "react-hook-form";
 import { useContext } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { pokemonDataContext, pokemonHappinessContext } from "./App";
 import { fetchPokemon } from "./components/areas/functions";
-
+import { Alert } from "@mui/material";
 
 interface PokeFormInput {
   pokemonName: string;
@@ -15,13 +16,18 @@ const PokeFormPage = () => {
     pokemonHappinessContext
   );
 
-  const onSubmit: SubmitHandler<PokeFormInput> = async (data) => {
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<PokeFormInput> = (data) => {
     dispatchHappy({ type: "new" });
-    const pokemonData = await fetchPokemon(data.pokemonName).catch(
-      (e) => alert("Invalid pokemon")
-    );
-    dispatchData({ type: "new", pokemonData: pokemonData });
-    console.log(pokemonData);
+    fetchPokemon(data.pokemonName)
+      .then((pokemonData) => {
+        return dispatchData({ type: "new", pokemonData: pokemonData });
+      })
+      .then(() => navigate("/tamagotchi"))
+      .catch((e) => {
+        alert("Invalid pokemon");
+      });
   };
 
   return (
