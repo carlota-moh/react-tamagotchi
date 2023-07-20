@@ -103,7 +103,7 @@ const HappyArea = () => {
         <CustomBatteryIcon />
       </span>
       <span>
-        <p className="battery-text">{pokemonHappiness}</p>
+        <p className="battery-text" data-testid='battery-level'>{pokemonHappiness}</p>
       </span>
       <span>
         <CustomAlert />
@@ -119,7 +119,7 @@ const PokemonImage = () => {
     return <div></div>;
   }
 
-  return <img src={pokemonData.img} alt="Character" className="pokemon-img" />;
+  return <img src={pokemonData.img} alt="Character" className="pokemon-img" data-testid='pokemon-img'/>;
 };
 
 const ScreenArea = () => {
@@ -137,7 +137,7 @@ const ScreenArea = () => {
     <div className="screen">
       <div className="stat-menu" data-testid='stats'>
         <HappyArea />
-        <div className="weight-div" data-testid='pokemon-img'>Weight: {pokemonData.weight}</div>
+        <div className="weight-div" data-testid='weight-display'>Weight: {pokemonData.weight}</div>
       </div>
       <PokemonImage />
     </div>
