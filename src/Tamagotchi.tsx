@@ -38,7 +38,7 @@ const buttonDataReducer = (pokemonDataState: any, action: any) => {
   }
 };
 
-const App = () => {
+const Tamagotchi = () => {
   const [pokemonData, dispatchData] = useReducer(buttonDataReducer, undefined);
   const [pokemonHappiness, dispatchHappy] = useReducer(
     buttonHappinessReducer,
@@ -58,4 +58,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Tamagotchi;

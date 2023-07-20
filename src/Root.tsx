@@ -12,7 +12,7 @@ const RootPage = () => {
         <div className="button-area">
           <span>
             <Button variant="contained" color="primary" size="small">
-              <Link className="root-link" to={`app`}>
+              <Link className="root-link" to={`tamagotchi`}>
                 Go to App
               </Link>
             </Button>

@@ -1,5 +1,5 @@
 import { useState, useContext, useCallback } from "react";
-import { pokemonDataContext, pokemonHappinessContext } from "../../App";
+import { pokemonDataContext, pokemonHappinessContext } from "../../Tamagotchi";
 import {
   FeedButton,
   GetNewPokemonButton,

@@ -2,7 +2,7 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootPage from './Root';
-import App from "./App";
+import Tamagotchi from "./Tamagotchi";
 import PokeFormPage from './Pokeform'
 import ErrorPage from "./ErrorPage";
 import "@fontsource/roboto/300.css";
@@ -17,8 +17,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/app",
-    element: <App />,
+    path: "/tamagotchi",
+    element: <Tamagotchi />,
     errorElement: <ErrorPage />,
   },
   {
