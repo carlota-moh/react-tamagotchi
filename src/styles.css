@@ -44,6 +44,7 @@ img {
 
 .welcome-message {
     font-weight: bold;
+    font-size: 1em;
 }
 
 .pokemon-img {
@@ -75,5 +76,20 @@ img {
 .weight-div {
     font-size: 18px;
 }
+
+.root-link {
+    font-size: 0.8125rem;
+    color: white;
+}
+
+.loading-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
 
 
