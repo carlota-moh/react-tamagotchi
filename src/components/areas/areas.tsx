@@ -24,6 +24,7 @@ const ButtonArea = () => {
   const handleNewPokemonClick = useCallback(async () => {
     dispatchHappy({type: "new"})
     const pokemonID = Math.floor(Math.random() * 150 + 1);
+    // handle this error?
     const pokemonData = await fetchPokemon(pokemonID);
     dispatchData({type: "new", pokemonData: pokemonData})
   }, []);
