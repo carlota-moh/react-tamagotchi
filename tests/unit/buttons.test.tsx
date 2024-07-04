@@ -1,9 +1,9 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import App from "../../src/App";
+import Tamagotchi from "../../src/Tamagotchi";
 
 describe("Buttons render correctly", () => {
   beforeEach(() => {
-    render(<App />);
+    render(<Tamagotchi />);
   });
 
   it("Renders New button correctly", () => {
@@ -37,7 +37,7 @@ describe("Buttons render correctly", () => {
 
 describe("New button works correctly", () => {
   beforeEach(() => {
-    render(<App />);
+    render(<Tamagotchi />);
   });
 
   test("New button displays data when clicked", async () => {
@@ -60,7 +60,7 @@ describe("New button works correctly", () => {
 
 describe("Interactive buttons work correctly", () => {
   beforeEach(async () => {
-    render(<App />);
+    render(<Tamagotchi />);
     const newButton = screen.getByRole("button", {
       name: "New",
     });

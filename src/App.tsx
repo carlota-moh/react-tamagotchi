@@ -1,5 +1,8 @@
-import "./styles.css";
-import { ScreenArea, ButtonArea } from "./components/areas/areas";
+import { Route, Routes } from "react-router-dom";
+import RootPage from "./Root";
+import ErrorPage from "./ErrorPage";
+import Tamagotchi from "./Tamagotchi";
+import PokeFormPage from "./Pokeform";
 import { createContext, useReducer } from "react";
 
 export const pokemonDataContext = createContext<any>(undefined);
@@ -45,16 +48,31 @@ const App = () => {
     0
   );
   return (
-    <div className="tamagotchi">
+    <>
       <pokemonDataContext.Provider value={{ pokemonData, dispatchData }}>
         <pokemonHappinessContext.Provider
           value={{ pokemonHappiness, dispatchHappy }}
         >
-          <ScreenArea />
-          <ButtonArea />
+          <Routes>
+            <Route
+              path="/"
+              element={<RootPage />}
+              errorElement={<ErrorPage />}
+            />
+            <Route
+              path="/tamagotchi"
+              element={<Tamagotchi />}
+              errorElement={<ErrorPage />}
+            />
+            <Route
+              path="/pokeform"
+              element={<PokeFormPage />}
+              errorElement={<ErrorPage />}
+            />
+          </Routes>
         </pokemonHappinessContext.Provider>
       </pokemonDataContext.Provider>
-    </div>
+    </>
   );
 };
 
